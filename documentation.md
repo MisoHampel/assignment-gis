@@ -563,13 +563,13 @@ FROM toilet WHERE ST_DWithin(geom, ST_MakePoint(116,-32)::geography, 100000)
 
 
 
-** Query getPointsInsideBoundaries pred optimalizáciou **
+**Query getPointsInsideBoundaries pred optimalizáciou**
 ```SQL
 EXPLAIN (FORMAT JSON)
 SELECT  *, ST_AsGeoJSON(geom) as geometry  FROM toilet 
 WHERe st_contains(ST_Transform(ST_SetSRID((select geom from australiaboundaries where id =2316598),4326),4326),  geom)=true
 ```
-** Explain **
+**Explain **
 ```JSON
 [
   {
@@ -617,7 +617,7 @@ WHERe st_contains(ST_Transform(ST_SetSRID((select geom from australiaboundaries 
 ]
 ```
 
-** Query getPointsInsideBoundaries po optimalizácii **
+**Query getPointsInsideBoundaries po optimalizácii **
 ```SQL
 
 EXPLAIN (FORMAT JSON)
@@ -626,7 +626,7 @@ FROM  toilet AS t,  australia_boundaries_result AS r
 WHERE r.id=2316598 and ST_CONTAINS(r.geom, t.geom) 
 
 ```
-** Explain **
+**Explain **
 ```JSON
 [
   {
@@ -687,14 +687,14 @@ WHERE r.id=2316598 and ST_CONTAINS(r.geom, t.geom)
 
 
 
-** Query heatmap data countries  po optimalizácii uz som mal pripravené data **
+**Query heatmap data countries  po optimalizácii uz som mal pripravené data **
 ```SQL
 EXPLAIN (FORMAT JSON)
 SELECT a.name, count(a.name) as count  
 FROM  toilet AS t,  australia_countries AS a 
 WHERE t.drinkingwater like 'True' and ST_CONTAINS(a.geom, t.geom) group by a.name order by count desc
 ```
-** Explain **
+**Explain **
 ```JSON
 [
   {
@@ -799,14 +799,14 @@ WHERE t.drinkingwater like 'True' and ST_CONTAINS(a.geom, t.geom) group by a.nam
 
 
 
-** Query heatmap data districts  po optimalizácii uz som mal pripravené data **
+**Query heatmap data districts  po optimalizácii uz som mal pripravené data **
 ```SQL
 EXPLAIN (FORMAT JSON)
 SELECT a.name, count(a.name) as count  
 FROM  toilet AS t,  australia_districts AS a 
 WHERE t.drinkingwater like 'True' and ST_CONTAINS(a.geom, t.geom) group by a.name order by count desc
 ```
-** Explain **
+**Explain **
 ```JSON
 [
   {
@@ -898,7 +898,7 @@ WHERE t.drinkingwater like 'True' and ST_CONTAINS(a.geom, t.geom) group by a.nam
 
 
 
-** Query getPointsFromDrawedPolygon - ziskanie zachodov z nakresleneho polygonu preneseneho na server pomocou GeoJSON  **
+**Query getPointsFromDrawedPolygon - ziskanie zachodov z nakresleneho polygonu preneseneho na server pomocou GeoJSON  **
 ```SQL
 EXPLAIN (FORMAT JSON)
 SELECT  *, ST_AsGeoJSON(geom) as geometry  
@@ -914,7 +914,7 @@ WHERe st_contains(
 	),  geom
 )=true
 ```
-** Explain **
+**Explain **
 ```JSON
 [
   {
@@ -984,14 +984,14 @@ WHERe st_contains(
 
 
 
-** Query getPOIinDistance 100km po optimalizácii **
+**Query getPOIinDistance 100km po optimalizácii **
 ```SQL
 EXPLAIN (FORMAT JSON)
 SELECT * 
 FROM poi 
 WHERE ST_DWithin(ST_Transform(way, 4326), ST_MakePoint(116,-32)::geography, 100000 )
 ```
-** Explain **
+**Explain **
 ```JSON
 [
   {
