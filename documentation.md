@@ -57,27 +57,224 @@ Ostatné dáta vo formáte osm: `http://download.geofabrik.de/australia-oceania/
 
 ## Api
 
-**Find hotels in proximity to coordinates**
+**Nájdenie N najbližších verejnych záchodov**
 
-`GET /search?lat=25346&long=46346123`
+`GET /nearestcount?longitude135&latitude-25&limit10`
 
-**Find hotels by name, sorted by proximity and quality**
+**Response**
 
-`GET /search?name=hviezda&lat=25346&long=46346123`
-
-### Response
-
-API calls return json responses with 2 top-level keys, `hotels` and `geojson`. `hotels` contains an array of hotel data for the sidebar, one entry per matched hotel. Hotel attributes are (mostly self-evident):
-```
+```JSON
 {
-  "name": "Modra hviezda",
-  "style": "modern", # cuisine style
-  "stars": 3,
-  "address": "Panska 31"
-  "image_url": "/assets/hotels/652.png"
+  "features": [
+    {
+      "geometry": {
+        "coordinates": [
+          135.2484994,
+          -26.07050006
+        ],
+        "type": "Point"
+      },
+      "type": "Feature",
+      "properties": {
+        "font-color": "#000000",
+        "isopen": "Variable",
+        "marker-symbol": "toilets",
+        "address": "Mount Dare Road",
+        "town": "Finke",
+        "icon": "unisex",
+        "name": "Witjira National Park 1",
+        "postcode": "0872",
+        "state": "Northern Territory"
+      }
+    },
+    ...
+  ]
 }
 ```
-`geojson` contains a geojson with locations of all matched hotels and style definitions.
+
+**Nájdenie najbližšie verejne záchody v okruhu N km**
+
+`GET /nearest?longitude=150.82031250000546&latitude=-33.62742849477819&distance=10000`
+
+**Response**
+
+```JSON
+{
+  "features": [
+    {
+      "geometry": {
+        "coordinates": [
+          150.80352581,
+          -33.55922095
+        ],
+        "type": "Point"
+      },
+      "type": "Feature",
+      "properties": {
+        "font-color": "#007fff",
+        "isopen": "AllHours",
+        "marker-symbol": "toilets",
+        "address": "356 Kurmond Road",
+        "town": "Freemans Reach",
+        "icon": "toilet",
+        "name": "Freemans Reach Park",
+        "postcode": "2756",
+        "state": "New South Wales"
+      }
+    },
+    ...
+  ]
+}
+```
+
+**Zobrazenie hraníc oblasti**
+
+`GET /boundary?id=2316598`
+
+**Response**
+
+```JSON
+{
+  "features": [
+    {
+      "name": "Western Australia",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              117.8714232,
+              -35.1918585
+            ],
+            [
+              117.8695438,
+              -35.191744
+            ],
+            ...
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "2316598",
+      "type": "Feature"
+    },
+    ...
+  ]
+}
+```
+
+**Zobrazenie verejnych záchodov v oblasti**
+
+`GET /boundarypoints?id=2316598`
+
+**Response**
+
+```JSON
+{
+  "features": [
+    {
+      "geometry": {
+        "coordinates": [
+          115.52884845,
+          -32.02241248
+        ],
+        "type": "Point"
+      },
+      "type": "Feature",
+      "properties": {
+        "font-color": "#007fff",
+        "isopen": "AllHours",
+        "marker-symbol": "toilets",
+        "address": "Parker Point Road",
+        "town": "Rottnest Island",
+        "icon": "toilet",
+        "name": "Parker Point",
+        "postcode": "6161",
+        "state": "Western Australia"
+      }
+    },
+    ...
+  ]
+}
+```
+
+
+**Zobrazenie heatmapy oblasti**
+
+`GET /heatmapcountries`
+
+**Response**
+
+```JSON
+[
+  {
+    "name": "New South Wales",
+    "count": 554
+  },
+  {
+    "name": "Queensland",
+    "count": 429
+  },
+  ...
+]
+```
+
+
+**Zobrazenie heatmapy okresu**
+
+`GET /heatmapdistricts`
+
+**Response**
+
+```JSON
+[
+  {
+    "name": "Sutherland Shire Council",
+    "count": 83
+  },
+  {
+    "name": "Northern Beaches Council",
+    "count": 66
+  },
+  {
+  ...
+]
+```
+
+
+**Nakreslenie polygónu a zobrazenie verejných záchodov vo vnútri**
+
+`GET /polygon?geojson={"type":"FeatureCollection","features":[{"id":"ce13360faeebb97b4c82886e84e7cced","type":"Feature","properties":{},"geometry":{"coordinates":[[[148.7109374999971,-20.85265332853281],[152.5341796874908,-19.367123496979104],[156.7089843749859,-29.663236089948896],[143.6132812500055,-25.85329304169605],[148.7109374999971,-20.85265332853281]]],"type":"Polygon"}}]}`
+
+**Response**
+
+```JSON
+{
+  "features": [
+    {
+      "geometry": {
+        "coordinates": [
+          148.04524183,
+          -22.01444418
+        ],
+        "type": "Point"
+      },
+      "type": "Feature",
+      "properties": {
+        "font-color": "#007fff",
+        "isopen": "AllHours",
+        "marker-symbol": "toilets",
+        "address": "Moranbah Access Road",
+        "town": "Moranbah",
+        "icon": "toilet",
+        "name": "Apex Park",
+        "postcode": "4744",
+        "state": "Queensland"
+      }
+    },
+  ...
+  ],
+}
+```
 
 
 ## Optimalisation
