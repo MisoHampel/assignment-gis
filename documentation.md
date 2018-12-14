@@ -130,7 +130,15 @@ join australia_boundaries_contains_geometry abcg on abp.geometry=abcg.geom order
 ```
 Zmena z ![Screenshot](screenshots/opt2.png) na ![Screenshot](screenshots/opt1.png)
 
+- Optimalizácie pre zobrazenie POI
+```SQL
+create table poi AS (select ST_AsGeoJSON(ST_Transform(way, 4326)) AS geojson, amenity, way 
+FROM planet_osm_point 
+where (amenity LIKE 'fuel' OR amenity LIKE 'bar' OR amenity LIKE 'cafe' OR amenity LIKE 'restaurant' )
+order by amenity)
 
+CREATE INDEX idx_poi ON poi(amenity);
+```
 
 
 
