@@ -1,4 +1,4 @@
-# Dokumentacia je v subore documentation.mf
+# Dokumentacia je v subore documentation.md
 
 
 
