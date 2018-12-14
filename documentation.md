@@ -1,22 +1,14 @@
-*This is a documentation for a fictional project, just to show you what I expect. Notice a few key properties:*
-- *no cover page, really*
-- *no copy&pasted assignment text*
-- *no code samples*
-- *concise, to the point, gets me a quick overview of what was done and how*
-- *I don't really care about the document length*
-- *I used links where appropriate*
-
 # Overview
+Táto aplikácia dokáže zobrazovať verejné záchody po celej Austrálii. Scenáre, ktoré dokáže aplikácia zobraziť používateľovi
+-	Keďže sa aplikácia nachádza mimo územia SR, je to zobrazený marker, ktorý simuluje aktuálnu polohu
+-	Zobrazenie N najbližších verejných záchodov na základe aktuálnej polohy. (aj filtre)
+-	Zobrazenie najbližších záchodov na základe zadanej vzdialenosti od aktuálnej polohy. (aj filtre)
+-	Zapnutie filtrov, ak sú filtre zapojené zapoja sa do viacerých scenárov.
+-	Zobrazenie území ako polygón = výber z combo boxa
+-	Zobrazenie verejných záchodov v určitom polygóne (aj filtre)
+-	Nakreslenie polygónu a zobrazenie verejných záchodov v ňom
 
-This application shows hotels in Bratislava on a map. Most important features are:
-- search by proximity to my current location
-- search by hotel name
-- intelligent ordering - by proximity and by hotel features
-- hotels on the map are color coded by their quality assigned in stars (standard)
-
-This is it in action:
-
-![Screenshot](screenshot.png)
+![Screenshot](screenshots/screenshot01.png)
 
 The application has 2 separate parts, the client which is a [frontend web application](#frontend) using mapbox API and mapbox.js and the [backend application](#backend) written in [Rails](http://rubyonrails.org/), backed by PostGIS. The frontend application communicates with backend using a [REST API](#api).
 
