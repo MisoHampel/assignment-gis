@@ -8,7 +8,7 @@ Táto aplikácia dokáže zobrazovať verejné záchody po celej Austrálii. Sce
 -	Zobrazenie verejných záchodov v určitom polygóne (aj filtre)
 -	Nakreslenie polygónu a zobrazenie verejných záchodov v ňom
 
-#Screenshots  
+# Screenshots  
 
 - Úvodná obrazovka
 ![Screenshot](screenshots/screenshot01.png)
@@ -325,7 +325,10 @@ select abp.* from australia_boundaries_polygons abp
 join australia_boundaries_contains_geometry abcg on abp.geometry=abcg.geom order by id
 
 ```
-Zmena z ![Screenshot](screenshots/opt2.png) na ![Screenshot](screenshots/opt1.png)
+Zmena z
+![Screenshot](screenshots/opt2.png) 
+na 
+![Screenshot](screenshots/opt1.png)
 
 - Optimalizácie pre zobrazenie POI
 ```SQL
