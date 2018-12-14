@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PDT - publictoilets - Michal Hampel</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no'/>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="menu.js"></script>
+</head>
+<body>
+
+<!--Navigation-->
+<div id="mySidenav" class="sidenav">
+    <!--<a href="javascript:void(0)" class="closebtn" onclick="trigMenu()">&times;</a>-->
+    <div class="block">
+        <p>Remove all unnecessary markers and layers</p>
+        <a href="#" id="clear">Clear</a>
+    </div>
+
+    <div class="block">
+        <p>Get limit pcs toilets nearest to my actual location</p>
+        Limit: <input type="number" id="txt_limit" name="Limit" value="10"> pcs
+        <a href="#" id="nearestcount">Get Limit</a>
+    </div>
+    <div class="block">
+        <p>Get nearest toilets to my actual location in range</p>
+        Limit: <input type="number" id="txt_nearest" name="Nearest" value="10"> km
+        <a href="#" id="nearest">Get Nearest</a>
+    </div>
+    <div class="block">
+        <p id="filterstatus">Filtre: <b>VYPNUTÉ</b></p>
+        <input type="checkbox" id="male" name="male">
+        <label for="male">Muži</label>
+        <input type="checkbox" id="female" name="female">
+        <label for="female">Ženy</label>
+        <input type="checkbox" id="unisex" name="unisex">
+        <label for="unisex">Unisex</label><br>
+        <input type="checkbox" id="paymentReq" name="paymentrequired">
+        <label for="paymentReq">Platene</label>
+        <input type="checkbox" id="parking" name="parking">
+        <label for="parking">Parkovanie</label><br>
+        <input type="checkbox" id="babychange" name="babychange">
+        <label for="babychange">Prebalovaci pult</label>
+        <input type="checkbox" id="drinkingwater" name="drinkingwater">
+        <label for="drinkingwater">Pitná voda</label><br>
+        <input type="checkbox" id="showers" name="showers">
+        <label for="showers">Sprchy</label>
+
+        <a href="#" id="filter">Filter</a>
+    </div>
+
+    <div class="block">
+        <p>Show boundaries</p>
+        <select id="boundaries" name="boundaries" > </select>
+        <a href="#" id="boundariesbtn">show boundaries</a>
+        <a href="#" id="boundariesbtn2">show toilets</a>
+    </div>
+    <div class="block">
+        <p>Show heatmap with drinking weater</p>
+        <a href="#" id="heatmapcountriesbtn">show countries </a>
+        <a href="#" id="heatmapdistrictsbtn">show districts</a>
+    </div>
+    <div class="block">
+        <p>POI</p>
+        Limit: <input type="number" id="txt_nearest_poi" name="Nearest" value="100"> km
+    </div>
+    <div class="block">
+        <p>END</p>
+    </div>
+
+
+</div>
+<div id="mySidenavMenu" class="sidenavmenu" style="z-index: 2;" onclick="trigMenu()">&#9776;</div>
+
+<!--Position-->
+<div class="location" style="z-index: 1">
+    <p>Actual location - simulated<br>select by clicking on map</p>
+    <b>Latitude: </b><div id="latitude">123,312321312</div>
+    <b>Longitude: </b><div id="longitude">- 32, 32132132</div>
+</div>
+
+<!--map-->
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.9/mapbox-gl-draw.js'></script>
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.9/mapbox-gl-draw.css' type='text/css'/>
+<div id='map'></div>
+<script src="scripts.js"></script>
+</body>
+</html>

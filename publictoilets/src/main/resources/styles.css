@@ -1,0 +1,107 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: -1;
+    margin-left: 40px;
+}
+.menu{
+    font-size: 20px;
+    display: block;
+    position: relative;
+    line-height: 30px;
+    margin-top: 70px;
+    margin-left: 10px;
+    width: 30px;
+    border: 2px solid rgba(0,0,0,.2);
+    background-color: white;
+    text-align: center;
+}
+.location{
+    display: block;
+    position: absolute;
+    top:10px;
+    right: 10px;
+    width: 250px    ;
+    border: 2px solid rgba(0,0,0,.2);
+    background-color: white;
+    text-align: center;
+    z-index: 2;
+}
+.block{
+    display: block;
+    background-color: white;
+    text-align: center;
+    margin: 5px;
+    padding: 5px;
+    z-index: 1;
+}
+.sidenavmenu {
+    height: 100%;
+    width: 40px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: lightskyblue;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    font-size: 40px;
+    border-left: black;
+    border-left-width: 1px;
+    border-left-style: solid;
+
+    text-decoration: none;
+    cursor: pointer;
+}
+.sidenavmenu div {
+}
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: lightskyblue;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 5px;
+    margin: 5px;
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
+    display: block;
+    transition: 0.3s;
+    border: solid 2px black;
+    background-color: lightskyblue;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
